@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exam Countdown</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #countdown {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="countdown">Countdown: <span id="countdown-hours"></span> hours</div>
+
+  <script>
+    // Function to update the countdown
+    function updateCountdown() {
+      const examDate = new Date("2024-05-05"); // Exam date (May 5, 2024)
+      const currentDate = new Date();
+      const timeDifference = examDate - currentDate;
+
+      // Calculate hours remaining
+      const hoursRemaining = Math.floor(timeDifference / (1000 * 60 * 60));
+
+      // Update the countdown element
+      document.getElementById("countdown-hours").textContent = hoursRemaining;
+    }
+
+    // Function to update the countdown every second
+    function startCountdown() {
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
+
+    // Check if countdown data exists in local storage and start the countdown
+    if (localStorage.getItem("countdownData")) {
+      startCountdown();
+    } else {
+      // Set the countdown data in local storage
+      localStorage.setItem("countdownData", true);
+      startCountdown();
+    }
+  </script>
+</body>
+</html>
+S
